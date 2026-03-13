@@ -28,8 +28,6 @@ FEATURE_NAMES = [
 def home():
     return "Employee Attrition Prediction API running"
 
-
-# Route 2: Prediction endpoint
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
@@ -37,7 +35,6 @@ def predict():
         marital_single  = 1 if request.form.get("MaritalStatus_Single") == "1" else 0
         sales_rep       = 1 if request.form.get("JobRole_Sales Representative") == "1" else 0
 
-        # Read numeric fields and convert to the right type
         total_working_years   = float(request.form.get("TotalWorkingYears", 0))
         job_level             = int(request.form.get("JobLevel", 1))
         years_in_role         = float(request.form.get("YearsInCurrentRole", 0))
@@ -98,7 +95,7 @@ def predict():
         })
 
     except Exception as e:
-        # Return the error message if something goes wrong
+        # Return the error message
         return jsonify({"success": False, "error": str(e)}), 500
 
 
