@@ -1,10 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>HR Platform Signup</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f2f3f7;
+        }
+
+        .container {
+            display: flex;
+            width: 900px;
+            height: 500px;
+            margin: 60px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* LEFT FORM */
+        .left {
+            width: 50%;
+            background: white;
+            padding: 40px;
+        }
+
+        .left h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(to right, #7b2ff7, #00c6ff);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* RIGHT SIDE DESIGN */
+        .right {
+            width: 50%;
+            background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .right h2 {
+            font-size: 26px;
+        }
+
+        .right p {
+            margin-top: 10px;
+        }
+
+    </style>
 </head>
+
 <body>
-$END$
+
+<div class="container">
+
+    <!-- LEFT FORM -->
+    <div class="left">
+        <h2>HR Sign Up</h2>
+
+        <form method="POST" action="/signup">
+
+            <input type="text" name="username" placeholder="Full Name" required>
+
+            <input type="email" name="email" placeholder="Work Email" required>
+
+            <input type="password" name="password" placeholder="Password" required>
+
+            <input type="text" name="company" placeholder="Company Name" required>
+
+            <input type="text" name="designation" placeholder="HR Role" required>
+
+            <input type="text" name="experience" placeholder="Experience (e.g. 3 years)" required>
+
+            <button type="submit">Register</button>
+
+        </form>
+
+        <div class="login-link">
+            Already a member? <a href="/login">Login</a>
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right">
+        <div>
+            <h2>AI Attrition Platform</h2>
+            <p>Predict employee attrition and make smarter HR decisions.</p>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>

@@ -58,7 +58,6 @@ def predict_employee(form_data) -> dict:
 # ── Private helpers ───────────────────────────────────────────────────────────
 
 def _build_input_dataframe(form_data) -> pd.DataFrame:
-    """Coerce raw form strings into correct types and build a model-ready DataFrame."""
     record = {
         "OverTime_Yes"                : 1 if form_data.get("OverTime_Yes") == "1" else 0,
         "MaritalStatus_Single"        : 1 if form_data.get("MaritalStatus_Single") == "1" else 0,
@@ -75,7 +74,7 @@ def _build_input_dataframe(form_data) -> pd.DataFrame:
 
 
 def _run_inference(input_df: pd.DataFrame) -> tuple:
-    """Run model.predict and model.predict_proba, return prediction + probabilities."""
+
     prediction     = int(model.predict(input_df)[0])
     proba          = model.predict_proba(input_df)[0]
     attrition_prob = round(float(proba[1]) * 100, 2)
@@ -84,7 +83,6 @@ def _run_inference(input_df: pd.DataFrame) -> tuple:
 
 
 def _compute_shap_features(input_df: pd.DataFrame) -> list:
-    """Compute SHAP values and return top-5 most influential features."""
     shap_values = explainer(input_df)
 
     # shap_values.values shape: (1, n_features) or (1, n_features, n_classes)
