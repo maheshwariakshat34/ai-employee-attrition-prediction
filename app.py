@@ -2,12 +2,11 @@ import os
 from flask import Flask, redirect, url_for
 from database.db import init_db
 from routes.auth import auth_bp
-from routes.dashboard import dashboard_bp
 from routes.prediction import prediction_bp
 
 app = Flask(__name__)
 
-# Secret key is required for session to work (keep this private in real projects)
+# Secret key is required for session
 app.secret_key = "your_secret_key_here"
 
 # Connect the database to the app
@@ -15,7 +14,6 @@ init_db(app)
 
 # Register all blueprints
 app.register_blueprint(auth_bp)
-app.register_blueprint(dashboard_bp)
 app.register_blueprint(prediction_bp)
 
 

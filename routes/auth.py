@@ -63,9 +63,9 @@ def login():
         # Step 4: If user is valid, save their ID in the session and go to dashboard
         if user:
             session["user_id"] = user.id  # remember who is logged in
-            return redirect(url_for("dashboard_bp.dashboard"))
+            return redirect(url_for("prediction_bp.dashboard"))
 
-        # Step 5: If invalid, return error message
+            # Step 5: If invalid, return error message
         return jsonify({"success": False, "message": "Invalid email or password"}), 401
 
 
