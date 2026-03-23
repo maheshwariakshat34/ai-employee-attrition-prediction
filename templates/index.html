@@ -7,6 +7,75 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- ADD THIS BLOCK RIGHT HERE -->
+<style>
+  /* header right section */
+  .header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  /* circular avatar with first letter */
+  .user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #6366f1;          /* solid accent purple — no pink */
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    flex-shrink: 0;
+  }
+
+  /* email text */
+  .user-email {
+    font-size: 13px;
+    color: #e8eaf0;
+    font-weight: 400;
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* thin vertical divider */
+  .header-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  /* logout button */
+  .btn-logout {
+    padding: 7px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 8px;
+    background: transparent;
+    color: #6b7280;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-logout:hover {
+    border-color: #6366f1;
+    color: #818cf8;
+    background: rgba(99, 102, 241, 0.08);
+  }
+</style>
+
+
 </head>
 <body>
 
@@ -16,6 +85,13 @@
     <h1>Attrition Intelligence</h1>
     <p>AI-Based Workforce Stability & Employee Retention Platform</p>
   </div>
+    <div class="header-right">
+    <div class="user-avatar">{{ user.email[0].upper() }}</div>
+    <span class="user-email">{{ user.email }}</span>
+    <div class="header-divider"></div>
+    <a href="/logout" class="btn-logout">Logout</a>
+  </div>
+
 </header>
 
 <div class="app-body">
