@@ -2,6 +2,8 @@ from flask import Blueprint, request, jsonify, render_template, redirect, url_fo
 from utils.validation import validate_input
 from services.prediction_service import predict_employee
 from database.models import User
+from database.db import db
+
 prediction_bp = Blueprint("prediction_bp", __name__)
 
 
@@ -11,16 +13,23 @@ def dashboard():
     # If user is not logged in, send them to login
     if "user_id" not in session:
         return redirect(url_for("auth_bp.login"))
-    user = User.query.get(session["user_id"])
 
-    # User is logged in → show the prediction form
-    return render_template("index.html")
+    # fetch user from database
+    user = db.session.get(User, session["user_id"])
+
+    # if user not found, clear bad session and redirect to login
+    if user is None:
+        session.clear()
+        return redirect(url_for("auth_bp.login"))
+
+    # user found → show prediction form
+    return render_template("index.html", user=user)
 
 
 @prediction_bp.route("/predict", methods=["POST"])
 def predict():
 
-    # Protect this route too — only logged in users can predict
+    # only logged in users can predict
     if "user_id" not in session:
         return redirect(url_for("auth_bp.login"))
 
