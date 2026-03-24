@@ -1,6 +1,6 @@
 import os
 from flask import Flask, redirect, url_for
-from database.db import init_db
+from database.db import init_db,db
 from routes.auth import auth_bp
 from routes.prediction import prediction_bp
 
@@ -15,6 +15,8 @@ init_db(app)
 # Register all blueprints
 app.register_blueprint(auth_bp)
 app.register_blueprint(prediction_bp)
+with app.app_context():
+    db.create_all()
 
 
 # Opening the app always starts at signup page
