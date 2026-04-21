@@ -227,9 +227,9 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ## 👤 Author
 
-**Akshat Lakhotiya**
-**Lakshay Bindal**
-**Ashish Kumar Yadav**
+1)Akshat Lakhotiya
+2)Lakshay Bindal
+3)Ashish Kumar Yadav
 
 - 🐙 GitHub: [@maheshwariakshat34](https://github.com/maheshwariakshat34)
 - 🌐 Live Project: [Employee Attrition Predictor](https://employee-attrition-predictor-jxcw.onrender.com/signup)
