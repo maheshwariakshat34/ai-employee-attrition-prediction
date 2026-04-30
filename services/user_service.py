@@ -13,13 +13,15 @@ def create_user(username, email, password, company, designation, experience):
 
     email = email.strip().lower()
 
-    password_bytes = password.encode("utf-8")
-    hashed_password = bcrypt.hashpw(password_bytes, bcrypt.gensalt())
+    hashed_password = bcrypt.hashpw(
+        password.encode("utf-8"),
+        bcrypt.gensalt()
+    )
 
     new_user = User(
         username=username,
         email=email,
-        password=hashed_password.decode("utf-8"),
+        password=hashed_password,  # ✅ KEEP AS BYTES
         company=company,
         designation=designation,
         experience=experience
@@ -37,13 +39,7 @@ def authenticate_user(email, password):
     if not user:
         return None
 
-    # user.password is already BYTES
-    password_matches = bcrypt.checkpw(
+    return bcrypt.checkpw(
         password.encode("utf-8"),
         user.password
-    )
-
-    if password_matches:
-        return user
-
-    return None
+    ) and user
